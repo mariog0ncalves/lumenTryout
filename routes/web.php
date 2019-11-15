@@ -14,3 +14,16 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+
+    $router->post('login', 'AuthController@login');
+    
+    $router->post('register', 'AuthController@register');
+
+    $router->get('profile', 'UserController@profile');
+
+    $router->get('users/{id}', 'UserController@getById');
+
+    $router->get('users', 'UserController@allUsers');
+});
